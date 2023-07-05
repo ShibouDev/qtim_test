@@ -7,5 +7,29 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:devilofficial1337@localhost:5432/test_qtim?schema=public"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  hash      String
+  hashedRt  String?
+
+  News News[]
+
+  @@map("users")
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  description String
+  userId      Int @unique
+
+  user User @relation(references: [id], fields: [userId])
 }
