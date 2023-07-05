@@ -1,0 +1,10 @@
+vesion: '3'
+services:
+db:
+  image: postgres:12
+  ports:
+    - 5432:5432
+  environment:
+    POSGRES_USER: postgres
+    POSGRES_PASSWORD: devilofficial1337
+    POSTGRES_DB: qtim_test
